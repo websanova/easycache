@@ -13,7 +13,7 @@
         "psr-4": {
             "Websanova\\EasyCache\\": "src/"
         }
-    }
+    },
     "minimum-stability": "dev",
     "require": {
         "illuminate/support": "~5"
