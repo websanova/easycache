@@ -1,0 +1,21 @@
+{
+    "name": "websanova/easy-cache",
+    "description": "Easily cache and retrieve models.",
+    "keywords": ["laravel", "cache", "caching", "model", "routes"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "websanova",
+            "email": "rob@websanova.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Websanova\\EasyCache\\": "src/"
+        }
+    }
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "~5"
+    }
+}
