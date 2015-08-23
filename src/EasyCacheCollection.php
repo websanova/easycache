@@ -13,6 +13,15 @@ class EasyCacheCollection extends \Illuminate\Database\Eloquent\Collection
         return $this;
     }
 
+    public function reset()
+    {
+        foreach ($this->items as $item) {
+            $item->reset();
+        }
+
+        return $this;
+    }
+
     public function flush()
     {
         foreach ($this->items as $item) {
