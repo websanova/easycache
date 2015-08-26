@@ -89,26 +89,35 @@ trait EasyCacheTrait
         return $this->getCacheKey() . '-' . $this->cacheBy . '-' . ($val ?: $this->{$this->cacheBy});
     }
 
-    public function inc($field, $factor = 1)
+    public function cacheInc($field, $factor = 1)
     {
         $model = $this->cached === true ? $this->getFromCache($this->{$this->cacheBy}) : $this;
 
         $model->{$field} += 1;
 
         if ($model->{$field} % $factor === 0) {
-            $model->save();
+            $timestamps = $model->timestamps;
+            
+            $model->timestamps = false;
+            $model->save(['timestamps' => false]); // Bug in Laravel using arg, for now we do it manually.
+            $model->timestamps = $timestamps;
         }
 
         if ($this->cached === true) {
             $model->recache();
         }
+
+        return $model;
     }
 
-    public function recount($field, $args = [])
+    public function recount($field, $relation = null)
     {
-        $table = explode('_', $field);
+        if (is_null($relation)) {
+            $table = explode('_', $field);
+            $relation = $table[0];
+        }
 
-        $this->{$field} = call_user_func_array([$this, $table[0]], $args)->count();
+        $this->{$field} = call_user_func_array([$this, $relation], [])->count();
         $this->save();
 
         return $this;
