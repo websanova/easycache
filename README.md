@@ -96,7 +96,7 @@ Note because the `id()` method actually controls the data we don't need to speci
 
 ### `cache() passthrough`
 
-Sometimes we will want to get an item from cache which is stored by `id` but through a different field. A good example is getting a user by an `email` or `facebook_id`. We don't want to cache the same data twice. What this will do is do a quick look up first using the `passthrough` field before fetching the model by `id`.
+Sometimes we will want to get an item from cache which is stored by `id` but through a different field. A good example is getting a user by an `email` or `facebook_id`. We don't want to cache the same data twice. This will do a quick look up first using the `passthrough` field before fetching the model by `id`.
 
 ~~~
 User::cache('rob@websanova.com', 'email');
@@ -142,7 +142,7 @@ $item->comments()->cache()->reset();
 
 Actually this one has nothing to do with caching but it's a common feature I use along with `flush` and `reset`.
 
-It performs a full recount rather than an increment or decrement. This is for more accurate counting as `total` counts can get off easy from errors in code. Perhaps not need on each request but also useful in a command to reset totals.
+It performs a full recount rather than an increment or decrement. This is for more accurate counting as `total` counts can be off easily when errors occur. Perhaps not needed on each request but also useful in a command to reset totals.
 
 ~~~
 $item = Item::cache($id);
@@ -196,13 +196,13 @@ Note that you should supply a positive number and `cacheDec` will pass it as a n
 
 ### `cached`
 
-This is mostly used for testing but is convenient look up to know whether the model is actually from the cache or not.
+This is mostly used for testing but is convenient to look up to know whether the model is actually from the cache or not.
 
 ### `cacheKey`
 
 This field is set by default using the `getTable()` method. However you can overwrite it in case you have some more complicated class structure in your models.
 
-It will cache the times using this key like so:
+It will cache the `items` using this key like so:
 
 ~~~
 Cache::tags('items')->put('items-id-14', $model, $this->cacheTime);
