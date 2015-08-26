@@ -6,27 +6,34 @@ class Domain extends BaseModel
 {
     protected $table = 'websanova_easycache_domains';
 
-    public function activeItems()
+    protected $cacheKey = 'domains';
+
+    protected $cacheBy = 'slug';
+
+    public $timestamps = false;
+
+    public function slug()
     {
-    	return $this->hasMany('\Websanova\EasyCache\Models\Item')->active()->order();
+        return $this->select('*');
     }
 
-    public function pendingItems()
+    public function items()
     {
-    	return $this->hasMany('\Websanova\EasyCache\Models\Item')->pending()->order();
+    	return $this->hasMany('\Websanova\EasyCache\Models\Item');
     }
 
-    public function deletedItems()
+    public function comments()
     {
-    	return $this->hasMany('\Websanova\EasyCache\Models\Item')->deleted()->order();
+        return $this->hasMany('\Websanova\EasyCache\Models\Comment');
     }
 
-    public function scopeOrder($q)
+    public function recountItems()
     {
-    	return $q->orderBy('id', 'asc');
+        return $this->items()->active();
     }
 
-    //protected $perPage = 20;
-
-    //protected $with = [];
+    public function recountComments()
+    {
+        return $this->comments()->active();
+    }
 }
