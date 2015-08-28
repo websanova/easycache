@@ -4,6 +4,10 @@ A simple on demand caching extension for Laravel.
 
 Works similar to `paginate()` or `get()` extending to also allow `cache()`.
 
+## Install
+
+composer require websanova/easycache
+
 ## Examples
 
 ### Models:
@@ -251,3 +255,7 @@ $items = Item::active()->orderBy('created_at')->with('score')->cache();
 ~~~
 
 This will perform just one query for getting the `score` rather than multiple queries if we didn't include it in the query beforehand.
+
+## License
+
+Laravel Easy Cache is licensed under [The MIT License (MIT)](https://github.com/websanova/easycache/blob/HEAD/LICENSE).
