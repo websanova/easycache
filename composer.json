@@ -1,7 +1,7 @@
 {
     "name": "websanova/easycache",
     "description": "Easily cache and retrieve models.",
-    "keywords": ["laravel", "5", "5.0", "5.1", "easycache" "easy-cache", "easy", "cache", "caching", "model", "routes"],
+    "keywords": ["laravel", "5", "5.0", "5.1", "easycache", "easy-cache", "easy", "cache", "caching", "model", "models", "collection", "collections"],
     "license": "MIT",
     "authors": [
         {
