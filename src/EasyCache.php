@@ -3,10 +3,11 @@
 namespace Websanova\EasyCache;
 
 use Cache;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-trait EasyCacheTrait
+trait EasyCache
 {
-    protected $cached = false;
+    public $cached = false;
 
     protected $cacheKey = '';
 
@@ -89,11 +90,6 @@ trait EasyCacheTrait
         return $this->getCacheKey() . '-' . $this->cacheBy . '-' . ($val ?: $this->{$this->cacheBy});
     }
 
-    public function isCached()
-    {
-        return $this->cached;
-    }
-
     public function cacheInc($field, $amount = 1, $factor = 1)
     {
         $model = $this->cached === true ? $this->getFromCache($this->{$this->cacheBy}) : $this;
@@ -159,5 +155,14 @@ trait EasyCacheTrait
         Cache::tags($key)->forget($cache_key);
 
         return $this;
+    }
+
+    protected function cacheOrFail($id)
+    {
+        if (! is_null($model = $this->getFromCache($id))) {
+            return $model;
+        }
+
+        throw (new ModelNotFoundException)->setModel(get_class($this));
     }
 }

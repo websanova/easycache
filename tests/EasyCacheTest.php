@@ -17,11 +17,11 @@ class EasyCacheTest extends TestCase
 
     	$item = Item::cache(1);
         $this->assertTrue($item->id === '1');
-        $this->assertTrue($item->isCached());
+        $this->assertTrue($item->cached);
 
         $item = Item::find(1);
         $this->assertTrue($item->id === '1');
-        $this->assertTrue( ! $item->isCached());
+        $this->assertTrue( ! $item->cached);
     }
 
     public function testGetItemBySlugPassthrough()
@@ -30,7 +30,7 @@ class EasyCacheTest extends TestCase
 
         $item = Item::cache('two', 'slug');
         $this->assertTrue($item->id === '2');
-        $this->assertTrue($item->isCached());
+        $this->assertTrue($item->cached);
     }
 
     public function testGetDomainBySlug()
@@ -39,7 +39,7 @@ class EasyCacheTest extends TestCase
 
         $domain = Domain::cache('en');
         $this->assertTrue($domain->id === '1');
-        $this->assertTrue($domain->isCached());
+        $this->assertTrue($domain->cached);
     }
 
     public function testGetItems()

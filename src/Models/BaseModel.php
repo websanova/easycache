@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
 {
-	use \Websanova\EasyCache\EasyCacheTrait;
+	use \Websanova\EasyCache\EasyCache;
 
 	public function scopeDomain($q)
 	{
