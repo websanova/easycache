@@ -192,6 +192,27 @@ $item->cacheDec('comments_total');
 
 Note that you should supply a positive number and `cacheDec` will pass it as a negative for you.
 
+### `cacheOrFail()`
+
+Similar to `findOrFail()` except that it works in conjunction with the cached items. Small difference is that it only works for models and not collections (for now).
+
+~~~
+Item::cacheOrFail($id);
+~~~
+
+It also throws the same `ModelNotFoundException` as `findOrFail` if a model is not found.
+
+Note that if the model is not cached, it will cache it first then return it.
+
+There is also a second parameter for a set or arguments it can receive. This is in case you want to keep a more loose set of models in your cache. For instance without status, so that all "active", "pending", etc items get cached. This allows you to set additional parameters which are useful when route model binding for one. You can set additional parameters for strictness there.
+
+~~~
+Item::cacheOrFail($id, [
+    'status' => 'active'
+    ...
+]);
+~~~
+
 ## Parameters
 
 ### `cached`
@@ -230,6 +251,9 @@ $items = Item::active()->orderBy('created_at')->with('score')->cache();
 ~~~
 
 This will perform just one query for getting the `score` rather than multiple queries if we didn't include it in the query beforehand.
+
+
+
 
 ## Routes Model Binding
 
