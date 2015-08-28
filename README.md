@@ -251,16 +251,3 @@ $items = Item::active()->orderBy('created_at')->with('score')->cache();
 ~~~
 
 This will perform just one query for getting the `score` rather than multiple queries if we didn't include it in the query beforehand.
-
-
-
-
-## Routes Model Binding
-
-A nice feature in Laravel is route-model binding. Allowing us to inject models directly into our controller methods (or fail otherwise if they don't exist).
-
-This is a task that will come up often and we will want to take advantage of our `cache` trait here for these lookups. However we also sometimes just need a direct look up for administrative purposes. For instance viewing deleted items (which probably don't need to be in the cache).
-
-This is a convenient little shorthand library you can use for setting these up.
-
-...
