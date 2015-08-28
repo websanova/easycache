@@ -6,7 +6,9 @@ Works similar to `paginate()` or `get()` extending to also allow `cache()`.
 
 ## Install
 
+~~~
 composer require websanova/easycache
+~~~
 
 ## Examples
 
