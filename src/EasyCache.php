@@ -160,7 +160,7 @@ trait EasyCache
     protected function cacheOrFail($id, $args = [])
     {
         if (! is_null($model = $this->getFromCache($id))) {
-            if (count($args)) {
+            if (count($args) > 0) {
                 foreach ($args as $k => $v) {
                     if ($model->$k !== $v) {
                         throw (new ModelNotFoundException)->setModel(get_class($this));
