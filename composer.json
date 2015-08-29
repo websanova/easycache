@@ -1,13 +1,15 @@
 {
     "name": "websanova/easycache",
+    "type": "package",
     "description": "Simple on demand caching extension for Laravel.",
     "keywords": ["laravel", "5", "5.0", "5.1", "easycache", "easy-cache", "easy", "cache", "caching", "model", "models", "collection", "collections"],
+    "homepage": "https://github.com/websanova/easycache",
     "license": "MIT",
     "authors": [
         {
             "name": "websanova",
             "email": "rob@websanova.com",
-            "homepage": "http://websanva.com"
+            "homepage": "http://websanova.com"
         }
     ],
     "autoload-dev": {
