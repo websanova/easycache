@@ -13,7 +13,7 @@ trait EasyCache
 
     protected $cacheTime = 60;
 
-    protected $cacheBy = 'id';
+    public $cacheBy = 'id';
 
     public function newCollection(array $models = [])
     {
