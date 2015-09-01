@@ -8,7 +8,7 @@ class Domain extends BaseModel
 
     protected $cacheKey = 'domains';
 
-    protected $cacheBy = 'slug';
+    public $cacheBy = 'slug';
 
     public $timestamps = false;
 
