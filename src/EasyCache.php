@@ -40,6 +40,11 @@ trait EasyCache
 
         $q->select($this->cacheBy);
 
+        // If false and value set we can set a limit
+        if ($val === false && is_int($passthrough)) {
+            $q->limit($passthrough);
+        }
+
         return $this->getFromCacheFactory($val === true ? $q->paginate($perPage) : $q->get());
     }
 
