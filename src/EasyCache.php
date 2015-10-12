@@ -128,7 +128,12 @@ trait EasyCache
             $relation = $table[0];
         }
 
-        $this->{$field} = (string)call_user_func_array([$this, $relation], [])->count();
+        $this->{$field} = call_user_func_array([$this, $relation], []);
+
+        if ( ! is_int($this->{$field})) {
+            $this->{$field} = (string)$this->{$field}->count();
+        }
+
         $this->save();
 
         return $this;
