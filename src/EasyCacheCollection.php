@@ -4,10 +4,10 @@ namespace Websanova\EasyCache;
 
 class EasyCacheCollection extends \Illuminate\Database\Eloquent\Collection
 {
-    public function recount($field)
+    public function recount($field, $relation = null)
     {
         foreach ($this->items as $item) {
-            $item->recount($field);
+            $item->recount($field, $relation);
         }
 
         return $this;
