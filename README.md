@@ -64,7 +64,7 @@ The extension comes as a trait so just include it on any model you want to use i
 ~~~
 class Item extends \Illuminate\Database\Eloquent\Model
 {
-    use \Websanova\EasyCache\EasyCacheTrait;
+    use \Websanova\EasyCache\EasyCache;
 
     ...
 }
@@ -81,7 +81,7 @@ Based on this value the `cache()` method will call a function (or scope) by this
 ~~~
 class Item extends \Illuminate\Database\Eloquent\Model
 {
-    use \Websanova\EasyCache\EasyCacheTrait;
+    use \Websanova\EasyCache\EasyCache;
 
     public function id()
     {
